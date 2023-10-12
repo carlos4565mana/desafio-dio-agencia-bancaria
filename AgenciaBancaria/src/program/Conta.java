@@ -43,4 +43,47 @@ public class Conta {
 	public void setAgencia(String agencia) {
 		this.agencia = agencia;
 	}
+	
+	public String toString() {
+
+        return "\nNumero da Conta: " + this.getNumeroConta() +
+        		"\nAgencia: "+this.getAgencia()+
+                "\nCliente: " + this.pessoa.getNome() +
+                "\nCPF: " + this.pessoa.getCpf() +
+                "\nEmail: " + this.pessoa.getEmail() +
+                "\n" ;
+    }
+	
+	public void depositar(Double valor) {
+		
+		if(valor > 0) {
+			this.saldo = getSaldo() + valor;
+			System.out.println("Seu depósito foi realizado com sucesso!");
+		}else {
+			System.out.println("Não foi possível realizar o depósito.");
+		}
+	}
+	
+	public void sacar(Double valor) {
+		
+		if(valor > 0 && this.getSaldo()>= valor) {
+			this.saldo = getSaldo() - valor;
+			System.out.println("Saque realizado com sucesso!");
+		}else {
+			System.out.println("Não foi possivel realizar o Saque!");
+		}
+		
+	}
+	
+	public void transferir(Conta contaDestinatario, Double valor) {
+		
+		if(valor > 0 && this.getSaldo() >= valor) {
+			this.saldo = this.getSaldo() - valor;
+			contaDestinatario.saldo = contaDestinatario.getSaldo() + valor;
+			System.out.println("Transferência  realizado com sucesso!");
+		}else {
+			System.out.println("Não foi possível realizar a tranferência");
+		}
+		
+	}
 }
