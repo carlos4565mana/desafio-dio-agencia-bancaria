@@ -3,14 +3,13 @@ package program;
 public class Pessoa {
 
 	private String nome;
-	private String email;
 	private String cpf;
 	private String senha;
 	
-	public Pessoa(String nome, String email, String cpf, String senha) {
+	public Pessoa(String nome, String cpf, String senha) {
 		super();
 		this.nome = nome;
-		this.email = email;
+	
 		this.cpf = cpf;
 		this.senha = senha;
 	}
@@ -23,13 +22,6 @@ public class Pessoa {
 		this.nome = nome;
 	}
 
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
 
 	public String getCpf() {
 		return cpf;

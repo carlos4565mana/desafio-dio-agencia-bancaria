@@ -50,7 +50,6 @@ public class Conta {
         		"\nAgencia: "+this.getAgencia()+
                 "\nCliente: " + this.pessoa.getNome() +
                 "\nCPF: " + this.pessoa.getCpf() +
-                "\nEmail: " + this.pessoa.getEmail() +
                 "\n" ;
     }
 	
