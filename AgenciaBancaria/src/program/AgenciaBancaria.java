@@ -26,11 +26,11 @@ public class AgenciaBancaria {
 		System.out.println("***** Selecione uma operação que deseja realizar *****");
 		System.out.println("------------------------------------------------------");
 		System.out.println("|               Opção 1 - Criar conta                 |");
-		System.out.println("|               Opção 2 - Depositar                   |");
-		System.out.println("|               Opção 3 - Sacar                       |");
-		System.out.println("|               Opção 4 - Transferir                  |");
-		System.out.println("|               Opção 5 - Listar                      |");
-		System.out.println("|               Opção 6 - Saldo                       |");
+		System.out.println("|               Opção 2 - Deposito                    |");
+		System.out.println("|               Opção 3 - Saque                       |");
+		System.out.println("|               Opção 4 - Saldo                       |");
+		System.out.println("|               Opção 5 - Transferencia               |");
+		System.out.println("|               Opção 6 - Listagem das Contas         |");
 		System.out.println("|               Opção 7 - Sair                        |");
 		System.out.println("=======================================================");
 		
@@ -49,15 +49,40 @@ public class AgenciaBancaria {
 			sacar();
 			
 			break;
+		
+		case 4:
+			saldo();
+			
+			break;
+			
+			
+		case 5:
+			tranfererir();
+			break;
+			
+			
+		case 6:
+			listagem();
+			break;
+			
+		case 7:
+			
+			System.out.println("Saindo do Sistema.......");
+			System.exit(0);
+		
+		default:
+			System.out.println("Opção inválida!");
+			operacoes();
+			break;
+			
 		}
-		
-		
 		
 	}
 
 	
 
 	
+
 	private static void criarConta() {
 		System.out.println("--------------------------------------------------------------------------------------------------");
 		System.out.println("------Para fazer a abertura da conta é necessário um deposito inicial de R$ 1000,00 ou mais: -----");
@@ -123,8 +148,6 @@ public class AgenciaBancaria {
 		System.out.println(conta);
 		
 		operacoes();
-		
-		
 		
 	}
 	
@@ -194,6 +217,12 @@ public class AgenciaBancaria {
 		
 		
 	}
+	
+	
+	private static void saldo() {
+	
+		
+	}
 
 
 	private static Conta encontrarConta(int numeroConta, String agencia) {
@@ -210,6 +239,15 @@ public class AgenciaBancaria {
 		
 	}
 	
+	private static void tranfererir() {
+		
+
+	}
 	
+	
+	private static void listagem() {
+		
+		
+	}
 
 }
