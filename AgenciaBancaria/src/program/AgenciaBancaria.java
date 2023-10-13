@@ -87,7 +87,7 @@ public class AgenciaBancaria {
 		System.out.println("--------------------------------------------------------------------------------------------------");
 		System.out.println("------Para fazer a abertura da conta é necessário um deposito inicial de R$ 1000,00 ou mais: -----");
 		System.out.println("--------------------------------------------------------------------------------------------------");
-		System.out.println("\nDigite o Valor de Deposito: ");
+		
 		double deposito = 0;
 		String nome;
 		String agencia = null;
@@ -95,19 +95,24 @@ public class AgenciaBancaria {
 		int tentativas = 0;
 		boolean teste = false;
 		
-		try {
-			deposito = input.nextDouble();
-			
-			if (deposito < 1000) {
-				System.out.println("É necessário um deposito maior ou igual a R$ 1000,00.");
-				operacoes();
+		while(true) {
+			try {
+				System.out.println("\nDigite o Valor de Deposito: ");
+				deposito = input.nextDouble();
+				if (deposito < 1000) {
+					System.out.println("É necessário um deposito maior ou igual a R$ 1000,00.");
+					operacoes();
+				}
+				
+			}catch(InputMismatchException err){
+				System.out.println("Erro! O valor digitado não é válido. Tente novamente!");
+				input.nextLine();
+                continue;
 			}
-			System.out.println(deposito);
-			
-		}catch(InputMismatchException err){
-			System.out.println("Erro! O valor digitado não é válido. Tente novamente!");
-			operacoes();
+			break;
 		}
+		
+		
 		
 		System.out.println("\nDigite o nome do cliente: ");
 		nome = input.next();
@@ -154,13 +159,26 @@ public class AgenciaBancaria {
 	
 	
 	private static void depositar() {
-		
+		int numeroConta = 0;
 		System.out.println("Digite o nome da agência: ");
 		String agencia = input.next();
 		
-
-		System.out.println("Digite o Número da Conta: ");
-		int numeroConta = input.nextInt();
+		
+		while(true) {
+			try {
+				
+				System.out.println("Digite o Número da Conta: ");
+				numeroConta = input.nextInt();
+				
+			} catch (InputMismatchException  e) {
+				
+				System.out.println("Erro! O valor digitado não é válido. Tente novamente!");
+				input.nextLine();
+                continue;
+				
+			}
+			break;
+		}
 		
 		
 		Conta conta = encontrarConta(numeroConta, agencia);
@@ -221,6 +239,38 @@ public class AgenciaBancaria {
 	
 	private static void saldo() {
 	
+		int numeroConta = 0;
+		System.out.println("Digite o nome da agência: ");
+		String agencia = input.next();
+		
+		System.out.println("Digite o Número da Conta: ");
+		try {
+			 numeroConta = input.nextInt();
+			
+		} catch (InputMismatchException err) {
+			System.out.println("Erro! O valor digitado não é válido. Tente novamente!");
+			operacoes();
+		}
+		
+		
+		System.out.println("Digite a Senha: ");
+		String senha = input.next();
+		
+		Conta conta = encontrarConta(numeroConta, agencia);
+		if (conta != null) {
+			if (senha.equals(conta.getPessoa().getSenha())) {
+				System.out.println("Conta = "+ conta.getNumeroConta());
+				System.out.println("Nome  = "+ conta.getPessoa().getNome());
+				System.out.println("Saldo = "+ conta.getSaldo());
+
+			} else {
+				System.out.println("Senha incorreta!!!");
+				operacoes();
+			}
+		} else {
+			System.out.println("Conta não encontrada!");
+		}
+		operacoes();
 		
 	}
 
