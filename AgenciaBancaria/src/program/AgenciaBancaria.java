@@ -139,7 +139,7 @@ public class AgenciaBancaria {
 			}
 		}
 		
-		System.out.println("\nDigite a semha: ");
+		System.out.println("\nDigite a senha: ");
 		String senha = input.next();
 		
 		Pessoa cliente = new Pessoa(nome, cpf, senha);
@@ -149,8 +149,9 @@ public class AgenciaBancaria {
 		conta.setAgencia(agencia);
 		conta.depositar(deposito);
 		contasBancarias.add(conta);
+		double saldo = conta.getSaldo();
 		
-		System.out.println(conta);
+		System.out.printf("Olá %s, obrigado por criar uma conta em nosso banco, sua agência é %s, conta %d \ne seu saldo %.2f já está disponível para saque ",nome, agencia, conta.getNumeroConta(), saldo );
 		
 		operacoes();
 		
