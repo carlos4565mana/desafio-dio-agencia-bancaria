@@ -291,12 +291,61 @@ public class AgenciaBancaria {
 	
 	private static void tranfererir() {
 		
+		System.out.println("\nDigite o número da conta para transferência:");
+		int numeroContaRemetente = input.nextInt();
+		
+		System.out.println("Digite o nome da agência: ");
+		String agencia = input.next();
+		
+        Conta contaRemetente = encontrarConta(numeroContaRemetente, agencia);
+        if(contaRemetente != null) {
+        	
+        	System.out.println("\nDigite o número da conta do destinatário: ");
+        	int numeroContaDestinatario = input.nextInt();
+        	System.out.println("Digite o nome da agência: ");
+    		String agenciaDestinatario = input.next();
+        	
+        	Conta contaDestinatario = encontrarConta(numeroContaDestinatario, agenciaDestinatario);
+        	if(contaDestinatario != null) {
+        		System.out.println("Valor da transferência: ");
+                Double valor = input.nextDouble();
+                
+                System.out.println("Digite a senha:");
+                String senha = input.next();
+                
+                if(senha.equals(contaDestinatario.getPessoa().getSenha())) {
+                	contaDestinatario.transferir(contaRemetente, valor);
+                }
+        	}
+
+        	
+        }else {
+        	 System.out.println("--- Conta para transferência não encontrada ---");
+        	
+        }
+		operacoes();
 
 	}
 	
 	
 	private static void listagem() {
 		
+		System.out.println("Digite a senha de administrador!");
+		String senha = input.next();
+		
+		if(senha.equals("admin")) {
+			if (contasBancarias.size() > 0) {
+				for (Conta conta : contasBancarias) {
+					System.out.println(conta);
+				}
+			} else {
+				System.out.println("--- Não há contas cadastradas ---");
+			}
+		}else {
+			System.out.println("Você não tem privilégio de  administrador!");
+		}
+		
+		operacoes();
 		
 	}
 
